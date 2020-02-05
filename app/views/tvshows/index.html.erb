@@ -10,9 +10,9 @@
   <tbody>
     <% @tv_shows.each do |tv_show| %>
       <tr>
-        <td><%= tv_show.channel.name %></td>
+        <td><%= tv_show.channel&.name %></td>
         <td><%= tv_show.name %></td>
-        <td><%= tv_show.show_timing.strftime("%I:%M %p") %></td>
+        <td><%= tv_show.show_timing&.try(:strftime, "%I:%M %p") %></td>
         <td>
           <% if current_user.present? %>
             <% if current_user.favorited?(tv_show) %>
@@ -28,13 +28,3 @@
     <% end %>
   </tbody>
 </table>
-
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></link>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-
-
-<script>
-  $(document).ready(function() {
-    $('#tv_show').DataTable();
-  });
-</script>
