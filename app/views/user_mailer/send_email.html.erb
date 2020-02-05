@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hello, <%= @user.email&.split("@")&.first %></h1>
+    <p>
+      Your favorite Tv show <%= @tv_show.name %> will be start in 30 minutes on <%= @tv_show.channel&.name %> channel.
+    </p>
+    <p>
+      Timing of show: <%= @tv_show.show_timing&.try(:strftime, "%I:%M %p") %>.
+    </p>
+    <p>Thanks and have a great day!</p>
+  </body>
+</html>

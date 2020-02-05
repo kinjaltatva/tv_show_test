@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  show_timing: 2020-02-05 10:39:59
+  channel: one
+
+two:
+  name: MyString
+  show_timing: 2020-02-05 10:39:59
+  channel: two

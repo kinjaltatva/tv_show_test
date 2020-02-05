@@ -1,0 +1,40 @@
+<table id="tv_show" class="table table-striped table-bordered" style="width:100%">
+  <thead>
+    <tr>
+      <th>Channel Name</th>
+      <th>Tvshow</th>
+      <th>Timings</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tv_shows.each do |tv_show| %>
+      <tr>
+        <td><%= tv_show.channel.name %></td>
+        <td><%= tv_show.name %></td>
+        <td><%= tv_show.show_timing.strftime("%I:%M %p") %></td>
+        <td>
+          <% if current_user.present? %>
+            <% if current_user.favorited?(tv_show) %>
+              <%= link_to "Mark As UnFavorite", mark_as_unfavorite_tvshow_path(id: tv_show.id), method: :post, class: "btn btn-danger" %>
+            <% else %>
+              <%= link_to "Mark As Favorite", mark_as_favorite_tvshow_path(id: tv_show.id), method: :post, class: "btn btn-info" %>
+            <% end %>
+          <% else %>
+            <%= link_to "Mark As Favorite", new_user_session_path, class: "btn btn-info" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></link>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+
+<script>
+  $(document).ready(function() {
+    $('#tv_show').DataTable();
+  });
+</script>
